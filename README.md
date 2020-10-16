@@ -23,4 +23,5 @@ make
 * https://github.com/sansajn/ogre-linux-starter/blob/master/hello.cpp
 * https://help.ubuntu.ru/wiki/ogre
 
+
 * http://wiki.ogre3d.org/Line+3D
