@@ -7,6 +7,8 @@ Working sample how to prepare OGRE-based project.
 * Ubuntu 20
 * OGRE 1.12 (build from source)
 
+Windows is not supported for now.
+
 # How to run
 
 ```bash

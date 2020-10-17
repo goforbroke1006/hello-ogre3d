@@ -1,0 +1,33 @@
+cmake_minimum_required(VERSION 3.0)
+project(hello-ogre3d)
+
+set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_GENERATOR_PLATFORM x64)
+set(CMAKE_GENERATOR_PLATFORM Win32)
+
+add_executable(${PROJECT_NAME} main.cpp OgreApplication.cpp)
+
+
+
+set(OGRE_DIR C:/ogre/build32/sdk/CMake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "C:/ogre/build32/sdk/CMake")
+set(OGRE_DEPENDENCIES_DIR "C:/ogre/build32/Dependencies")
+
+#if (WIN32)
+#    message("WIN32 detected")
+    include_directories("C:/ogre/build32/sdk/include")
+link_directories("C:/ogre/build32/sdk/bin")
+link_directories("C:/ogre/build32/Dependencies/lib")
+#else ()
+    # specify which version and components you need
+    find_package(OGRE 1.12 REQUIRED COMPONENTS Bites RTShaderSystem)
+
+    # copy resource.cfg next to our binaries where OGRE looks for it
+    file(COPY ./resources.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    file(COPY ./plugins.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    file(COPY ./media DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+#endif ()
+
+
+# this also sets the includes and pulls third party dependencies
+target_link_libraries(${PROJECT_NAME} OgreBites OgreRTShaderSystem)
