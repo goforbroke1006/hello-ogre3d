@@ -29,10 +29,12 @@ sudo apt-get install -y libzzip-dev
 sudo apt-get install -y libpugixml-dev
 sudo apt install -y libsdl2-dev
 
+OGRE_SOURCE_DIR=~/ogre/
+
 #rm -rf ogre/
-git clone --depth 1 --branch v1.12.9 https://github.com/OGRECave/ogre.git
+git clone --depth 1 --branch v1.12.9 https://github.com/OGRECave/ogre.git ${OGRE_SOURCE_DIR}
 (
-  cd ogre
+  cd ${OGRE_SOURCE_DIR}
 
   mkdir -p build
   cd build
@@ -46,7 +48,7 @@ git clone --depth 1 --branch v1.12.9 https://github.com/OGRECave/ogre.git
     -DOGRE_BUILD_SAMPLES=false     \
     -DOGRE_CONFIG_ENABLE_ZIP=false
 
-  make -j 4
+  make -j 8
   sudo make install
   sudo ldconfig
 )

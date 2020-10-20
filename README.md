@@ -4,15 +4,28 @@ Working sample how to prepare OGRE-based project.
 
 ### Environment
 
-* Ubuntu 20
+* Ubuntu 20 / Windows 10
 * OGRE 1.12 (build from source)
 
-Windows is not supported for now.
+### Requirements
 
-# How to run
+##### Ubuntu
 
 ```bash
-mkdir -p  build
+bash ./install-ogre3d.sh
+```
+
+##### Windows
+
+```bash
+# git bash
+bash ./install-ogre3d-win.sh
+```
+
+### How to run
+
+```bash
+mkdir -p build
 cd build
 cmake ..
 make
