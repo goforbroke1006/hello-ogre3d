@@ -1,6 +1,18 @@
 #!/bin/bash
 
+# https://wiki.ogre3d.org/Prerequisites?tikiversion=Linux#Ubuntu
+sudo apt-get install -y \
+  build-essential automake libtool
+sudo apt-get install -y \
+  libfreetype6-dev libfreeimage-dev libzzip-dev libxrandr-dev libxaw7-dev \
+  freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev
+sudo apt-get install -y \
+  nvidia-cg-toolkit libois-dev libboost-thread-dev
+sudo apt-get install -y \
+  doxygen graphviz libcppunit-dev
+
 sudo apt install -y \
+  cmake \
   automake \
   build-essential \
   doxygen \
@@ -17,6 +29,7 @@ sudo apt-get install -y libzzip-dev
 sudo apt-get install -y libpugixml-dev
 sudo apt install -y libsdl2-dev
 
+#rm -rf ogre/
 git clone --depth 1 --branch v1.12.9 https://github.com/OGRECave/ogre.git
 (
   cd ogre
@@ -26,14 +39,14 @@ git clone --depth 1 --branch v1.12.9 https://github.com/OGRECave/ogre.git
   rm -rf ./*
 
   cmake .. \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DOGRE_BUILD_DEPENDENCIES=false \
-    -DOGRE_BUILD_TOOLS=false \
-    -DOGRE_INSTALL_TOOLS=false \
-    -DOGRE_BUILD_SAMPLES=false \
+    -DCMAKE_INSTALL_PREFIX=/usr    \
+    -DOGRE_BUILD_DEPENDENCIES=true \
+    -DOGRE_BUILD_TOOLS=false       \
+    -DOGRE_INSTALL_TOOLS=false     \
+    -DOGRE_BUILD_SAMPLES=false     \
     -DOGRE_CONFIG_ENABLE_ZIP=false
 
-  make -j 8
+  make -j 4
   sudo make install
   sudo ldconfig
 )

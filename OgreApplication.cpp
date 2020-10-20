@@ -4,6 +4,8 @@
 
 #include "OgreApplication.h"
 
+#include <OGRE/Bites/OgreCameraMan.h>
+
 OgreApplication::OgreApplication() : OgreBites::ApplicationContext("OgreTutorialApp"){}
 
 void OgreApplication::setup() {
@@ -28,30 +30,43 @@ void OgreApplication::setup() {
     lightNode->attachObject(light);
 
     // also need to tell where we are
-    Ogre::SceneNode* camNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-    camNode->setPosition(0, 0, 15);
-    camNode->lookAt(Ogre::Vector3(0, 0, -1), Ogre::Node::TS_PARENT);
+    mCameraNode = scnMgr->getRootSceneNode()->createChildSceneNode();
+    mCameraNode->setPosition(0, 0, 15);
+    mCameraNode->lookAt(Ogre::Vector3(0, 0, -1), Ogre::Node::TS_PARENT);
+
 
     // create the camera
     Ogre::Camera* cam = scnMgr->createCamera("myCam");
     cam->setNearClipDistance(5); // specific to this sample
     cam->setAutoAspectRatio(true);
-    camNode->attachObject(cam);
+    mCameraNode->attachObject(cam);
+
+    // makes Camera orbit
+//    auto mCameraMan = new OgreBites::CameraMan(*cam);
+//    mCameraMan->setStyle(OgreBites::CS_ORBIT);
+//    mCameraMan->setFixedYawAxis(true);
 
     // and tell it to render into the main window
     getRenderWindow()->addViewport(cam);
 
     // finally something to render
     Ogre::Entity* ent = scnMgr->createEntity("Sinbad.mesh");
-//    Ogre::Entity* ent = scnMgr->createEntity("ogrehead.mesh");
     Ogre::SceneNode* node = scnMgr->getRootSceneNode()->createChildSceneNode();
     node->attachObject(ent);
+
+    mCameraNode->setAutoTracking(true, node);
+    mCameraNode->setFixedYawAxis(true);
+    mCameraMan = new SdkCameraman(mCamera);
 }
 
 bool OgreApplication::keyPressed(const OgreBites::KeyboardEvent &evt) {
-    if (evt.keysym.sym == OgreBites::SDLK_ESCAPE)
-    {
+    if (evt.keysym.sym == OgreBites::SDLK_ESCAPE) {
         getRoot()->queueEndRendering();
     }
     return true;
+}
+
+bool OgreApplication::mouseMoved(const OgreBites::MouseMotionEvent &evt) {
+    mCameraNode->in(evt, id);
+    return InputListener::mouseMoved(evt);
 }

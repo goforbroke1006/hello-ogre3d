@@ -10,6 +10,7 @@ target_link_libraries(${PROJECT_NAME} zzip)
 
 # specify which version and components you need
 find_package(OGRE 1.12 REQUIRED COMPONENTS Bites RTShaderSystem)
+#find_package(OIS)
 
 # copy resource.cfg next to our binaries where OGRE looks for it
 file(COPY ./resources.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
