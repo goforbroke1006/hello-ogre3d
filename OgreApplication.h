@@ -5,7 +5,6 @@
 #ifndef HELLO_OGRE3D_OGREAPPLICATION_H
 #define HELLO_OGRE3D_OGREAPPLICATION_H
 
-//#include <OGRE/Ogre.h>
 #include <OGRE/OgreRoot.h>
 #include <OGRE/OgreRenderWindow.h>
 #include <OGRE/OgreEntity.h>

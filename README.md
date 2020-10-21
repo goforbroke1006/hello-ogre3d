@@ -4,8 +4,9 @@ Working sample how to prepare OGRE-based project.
 
 ### Environment
 
-* Ubuntu 20 / Windows 10
+* Ubuntu 20
 * OGRE 1.12 (build from source)
+* Windows 10 FAILED (compilation OK, but can't run)
 
 ### Requirements
 
@@ -30,6 +31,14 @@ cd build
 cmake ..
 make
 ./hello-ogre3d
+```
+
+```bash
+mkdir -p build
+cd build
+cmake -A win32 .. -G "Visual Studio 16 2019"
+cmake --build .
+./Debug/hello-ogre3d.exe
 ```
 
 ### Useful links

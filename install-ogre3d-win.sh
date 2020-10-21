@@ -13,20 +13,22 @@ cd C:/ogre/
 (
   mkdir -p build32
   cd build32/
+
   rm -rf ./*
 
   cmake -DCMAKE_BUILD_TYPE=Release -A win32 .. -G "Visual Studio 16 2019"
   cmake --build . --config Release
   cmake --install . --config Release
+
 )
 
-(
-  mkdir -p build64
-  cd build64/
-  rm -rf ./*
-
-  cmake -DCMAKE_BUILD_TYPE=Release -A x64 .. -G "Visual Studio 16 2019"
-  cmake --build . --config Release
-  cmake --install . --config Release
-)
+#(
+#  mkdir -p build64
+#  cd build64/
+#  rm -rf ./*
+#
+#  cmake -DCMAKE_BUILD_TYPE=Release -A x64 .. -G "Visual Studio 16 2019"
+#  cmake --build . --config Release
+#  cmake --install . --config Release
+#)
 
