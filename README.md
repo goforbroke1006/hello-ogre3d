@@ -23,6 +23,19 @@ bash ./install-ogre3d.sh
 bash ./install-ogre3d-win.sh
 ```
 
+or
+
+```bash
+OGRE_SDK=$(realpath .)/ogre-sdk-v1.12.9-vc15-x64/
+echo ${OGRE_SDK}
+mkdir -p ${OGRE_SDK}
+
+curl -L -o ogre-sdk-v1.12.9-vc15-x64.zip https://bintray.com/ogrecave/ogre/download_file?file_path=ogre-sdk-v1.12.9-vc15-x64.zip
+
+7z x ogre-sdk-v1.12.9-vc15-x64.zip -o${OGRE_SDK}
+setx OGRE_SDK ${OGRE_SDK}
+```
+
 ### How to run
 
 ```bash

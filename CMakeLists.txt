@@ -10,10 +10,11 @@ set(CMAKE_GENERATOR_PLATFORM x86)
 if (WIN32)
     message("OGRE_HOME = " $ENV{OGRE_HOME})
 
-    set(OGRE_DIR $ENV{OGRE_HOME}/CMake/)
-    find_package(OGRE 1.11 REQUIRED COMPONENTS Bites RTShaderSystem)
+    set(OGRE_DIR  "$ENV{OGRE_HOME}/CMake")
+    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "$ENV{OGRE_HOME}/CMake")
 
-    file(COPY ${OGRE_CONFIG_DIR}/resources.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    find_package(OGRE 1.12 REQUIRED COMPONENTS Bites RTShaderSystem)
+
     target_link_libraries(${PROJECT_NAME} ${OGRE_LIBRARIES})
 
     include_directories(
@@ -22,6 +23,10 @@ if (WIN32)
             $ENV{OGRE_HOME}/include/OGRE/RTShaderSystem
             $ENV{OGRE_HOME}/boost/
     )
+    link_directories(C:/OgreSDK/build32/Debug/lib/Debug)
+
+    file(GLOB OGRE_BIN "$ENV{OGRE_HOME}/bin/*.dll")
+    file(COPY ${OGRE_BIN} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 else ()
     find_package(OGRE 1.12 REQUIRED COMPONENTS Bites RTShaderSystem)
     # this also sets the includes and pulls third party dependencies
@@ -32,5 +37,7 @@ endif ()
 file(COPY ./resources.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY ./plugins.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY ./media DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+
 
 
