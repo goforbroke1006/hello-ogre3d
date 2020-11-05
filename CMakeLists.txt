@@ -23,10 +23,12 @@ if (WIN32)
             $ENV{OGRE_HOME}/include/OGRE/RTShaderSystem
             $ENV{OGRE_HOME}/boost/
     )
-    link_directories(C:/OgreSDK/build32/Debug/lib/Debug)
 
-    file(GLOB OGRE_BIN "$ENV{OGRE_HOME}/bin/*.dll")
-    file(COPY ${OGRE_BIN} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    file(GLOB OGRE_DLL "$ENV{OGRE_HOME}/bin/*.dll")
+    file(COPY ${OGRE_DLL} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+    file(GLOB OGRE_LIB "$ENV{OGRE_HOME}/lib/*.lib")
+    file(COPY ${OGRE_LIB} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 else ()
     find_package(OGRE 1.12 REQUIRED COMPONENTS Bites RTShaderSystem)
     # this also sets the includes and pulls third party dependencies
