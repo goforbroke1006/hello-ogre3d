@@ -4,8 +4,6 @@ project(hello-ogre3d)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(${PROJECT_NAME} main.cpp OgreApplication.cpp)
-set(CMAKE_GENERATOR_PLATFORM x86)
-
 
 if (WIN32)
     message("OGRE_HOME = " $ENV{OGRE_HOME})
