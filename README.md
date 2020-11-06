@@ -4,9 +4,8 @@ Working sample how to prepare OGRE-based project.
 
 ### Environment
 
-* Ubuntu 20
+* Ubuntu 20 / Windows 10 + MSVC 16 2019
 * OGRE 1.12 (build from source)
-* Windows 10 FAILED (compilation OK, but can't run)
 
 ### Requirements
 
@@ -17,6 +16,9 @@ bash ./install-ogre3d.sh
 ```
 
 ##### Windows
+
+* [Graphviz](https://graphviz.org/download/)
+* [7 Zip](https://www.7-zip.org/download.html)
 
 ```bash
 # git bash
