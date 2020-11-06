@@ -27,15 +27,18 @@ if (WIN32)
 
     file(GLOB OGRE_LIB "$ENV{OGRE_HOME}/lib/*.lib")
     file(COPY ${OGRE_LIB} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+    configure_file(${CMAKE_SOURCE_DIR}/plugins.cfg.win ${CMAKE_CURRENT_BINARY_DIR}/plugins.cfg COPYONLY)
 else ()
     find_package(OGRE 1.12 REQUIRED COMPONENTS Bites RTShaderSystem)
     # this also sets the includes and pulls third party dependencies
     target_link_libraries(${PROJECT_NAME} OgreBites OgreRTShaderSystem)
+#    file(COPY ./plugins.cfg.win DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/plugins.cfg)
+    configure_file(${CMAKE_SOURCE_DIR}/plugins.cfg ${CMAKE_CURRENT_BINARY_DIR}/plugins.cfg COPYONLY)
 endif ()
 
 # copy resource.cfg next to our binaries where OGRE looks for it
 file(COPY ./resources.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY ./plugins.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY ./media DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 
